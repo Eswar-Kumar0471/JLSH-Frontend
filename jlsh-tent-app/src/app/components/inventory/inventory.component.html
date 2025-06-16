@@ -1,0 +1,15 @@
+<div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Available Inventory</h2>
+  
+    <div *ngIf="items.length === 0">No items found.</div>
+  
+    <div *ngFor="let item of items" class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h3 class="text-xl font-semibold">{{ item.name }}</h3>
+      <p>Type: {{ item.type }}</p>
+      <p>Variant: {{ item.sizeOrVariant }}</p>
+      <p>Quantity Available: {{ item.quantityAvailable }}</p>
+      <p>Unit Price: ₹{{ item.unitPrice }}</p>
+      <p class="text-sm text-gray-600">{{ item.description }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,31 @@
+<div class="max-w-6xl mx-auto mt-10 px-4">
+  <h2 class="text-3xl font-bold text-indigo-700 mb-6">📋 Inventory Items</h2>
+
+  <div *ngIf="items.length === 0" class="text-gray-500 text-center">
+    No items found.
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div *ngFor="let item of items" class="bg-white rounded-xl shadow-md p-5 border hover:shadow-lg transition-all duration-300">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-xl font-semibold text-indigo-600">{{ item.name }}</h3>
+        <span class="text-sm text-white bg-green-500 rounded-full px-2 py-1" *ngIf="item.isActive">Active</span>
+        <span class="text-sm text-white bg-red-500 rounded-full px-2 py-1" *ngIf="!item.isActive">Inactive</span>
+      </div>
+
+      <p class="text-gray-600 mb-1"><strong>Type:</strong> {{ item.type }}</p>
+      <p class="text-gray-600 mb-1" *ngIf="item.sizeOrVariant"><strong>Variant:</strong> {{ item.sizeOrVariant }}</p>
+      <p class="text-gray-600 mb-1"><strong>Quantity:</strong> {{ item.quantityAvailable }}</p>
+      <p class="text-gray-600 mb-1"><strong>Unit Price:</strong> ₹{{ item.unitPrice }}</p>
+
+      <p class="text-gray-500 text-sm mt-2" *ngIf="item.description">
+        {{ item.description }}
+      </p>
+
+      <div class="flex justify-end gap-3 mt-4">
+        <button class="text-white bg-yellow-500 hover:bg-yellow-600 px-4 py-1 rounded-md text-sm">Edit</button>
+        <button class="text-white bg-red-600 hover:bg-red-700 px-4 py-1 rounded-md text-sm" (click)="deleteItem(item.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

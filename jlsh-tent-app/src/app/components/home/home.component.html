@@ -1,0 +1,32 @@
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">Available Inventory Items</h2>
+  <section class="text-center p-10 bg-gradient-to-br from-pink-200 to-indigo-200 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">
+      🎉 Proudly Serving Happy Customers Since 30 Years
+    </h2>
+    <img
+      src="assets/JLSH-Theme.png"
+      alt="Grand Event Tent Setup"
+      class="w-[90%] h-[500px] object-cover rounded-xl shadow-2xl ml-14"
+    />
+  </section>
+  <div *ngIf="items.length === 0" class="text-center text-gray-600">
+    No items available.
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" *ngIf="items.length > 0">
+    <div *ngFor="let item of items" class="p-4 bg-white shadow-md rounded-lg">
+      <h3 class="text-lg font-semibold">{{ item.name }}</h3>
+      <p><strong>Type:</strong> {{ item.type }}</p>
+      <p><strong>Size/Variant:</strong> {{ item.sizeOrVariant }}</p>
+      <p><strong>Quantity:</strong> {{ item.quantityAvailable }}</p>
+      <p><strong>Unit Price:</strong> ₹{{ item.unitPrice }}</p>
+      <p class="mt-2 text-sm text-gray-600">{{ item.description }}</p>
+
+      <div class="mt-4 flex gap-2">
+        <button class="bg-blue-500 text-white px-4 py-1 rounded" [routerLink]="['/edit-item', item.id]">Edit</button>
+        <button class="bg-red-500 text-white px-4 py-1 rounded" (click)="deleteItem(item.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
